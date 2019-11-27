@@ -10,9 +10,12 @@ def Home_View(request):
         user_name = request.user
     return  render(request, 'core/index.html', {'user': user_name})
 
-class Air_Detail(DetailView):
+class AirDetail(DetailView):
     model = Air
     template_name = 'core/air_detail.html'
+
+class AirList(ListView):
+    model = Air
 
 def About_View(request):
     return render(request, 'core/about.html', {})
@@ -23,7 +26,7 @@ class SearchList(View):
         try:
             query = request.GET.get('q')
             print(query)
-            air_list = Air.objects.filter(title__icontains=query, description__icontains=query)
+            air_list = Air.objects.filter(location__icontains=query, description__icontains=query)
             template_name = 'core/search_list.html'
             return render(request, template_name, {'airs': air_list})
         except:
