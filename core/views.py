@@ -17,31 +17,6 @@ class Air_Detail(DetailView):
 def About_View(request):
     return render(request, 'core/about.html', {})
 
-def Search(request):
-    pass
-
-# class SearchList(ListView):
-#     query = request.GET.get('q')
-#     queryset = Air.objects.filter(title__icontains = query, description__icontains = query)
-
-#     if query:
-#         template_name = 'core/search_list.html'
-#     else:
-#         template_name = 'core/index.html'
-#     # model = Air
-#     # template_name = 'core/search_list.html'
-    
-#     def meta(self, request):
-#         try:
-#             query = request.GET.get('q')
-#             print(query)
-#             airs = Air.objects.filter(title__icontains = query, description__icontains = query)
-#             template_name = 'core/search_list.html'
-#             return render(request, 'core/search_list.html', {})
-#         except:
-#             template_name = 'core/index.html'
-#             return render(request, 'core/index.html', {})
-
 
 class SearchList(View):
     def get(self, request):
@@ -55,12 +30,3 @@ class SearchList(View):
             template_name = 'core/index.html'
             return render(request, template_name, {})
         
-# this works
-# def SearchList(request):
-#         try:
-#             query = request.GET.get('q')
-#             print(query)
-#             airs = Air.objects.filter(title__icontains = query, description__icontains = query)
-#             return render(request, 'core/search_list.html'), {}
-#         except:
-#             return render(request, 'core/index.html', {})
